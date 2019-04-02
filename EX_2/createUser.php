@@ -17,14 +17,14 @@ if ($mysqli->connect_error) {
   }
   else {
     echo "Username: ".$user. "<br>";
-    $query="INSERT INTO Users(user_id) VALUES ('$users');";
+    $query="INSERT INTO Users(user_id) VALUES ('$user');";
     if ($result = $mysqli->query($query)) {
     echo "New Record created successfully";
     /* free result set */
     $result->free();
     }
     else{
-      echo "Error: " . $mysqli . "<br>" . $mysqli->error;
+      echo "Username already used. Please, pick another.";
     }
   }
 
