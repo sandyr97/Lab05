@@ -5,18 +5,20 @@ if ($mysqli->connect_error) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
-$query = "SELECT user_id FROM Users;";
+$user=$_POST["chosen_u"];
+$query = "SELECT author_id, content FROM Posts WHERE author_id='$user';";
 $result = $mysqli->query($query);
 if ($result->num_rows > 0) {
-  // output data to user
   echo "<table>
   <tr>
-  <th>User IDs</th>
+  <th>User ID</th>
+  <th>Post Content</th>
   </tr>";
   while($row = $result->fetch_assoc()) {
-    $user = $row["user_id"];
+    $content = $row["content"];
     echo "<tr>";
-    echo "<td>" . $user . "</td>";
+    echo "<td>" .$user. "</td>";
+    echo "<td>" . $content . "</td>";
     echo "</tr>";
   }
   echo "</table>";

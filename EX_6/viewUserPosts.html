@@ -7,7 +7,7 @@
     <form action="viewUserPosts.php" method="post" name="myForm" onsubmit="return validateForm()">
     Select a User:
     <br>
-  <select >
+  <select name="chosen_u">
     <?php
     $mysqli = new mysqli("mysql.eecs.ku.edu", "s214r501", "Caireik7", "s214r501");
     /* check connection */
