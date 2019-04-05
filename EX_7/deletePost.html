@@ -4,12 +4,13 @@
     <title></title>
   </head>
   <body>
-    <form action="viewUserPosts.php" method="post" name="myForm" onsubmit="return validateForm()">
+    <form action="deletePost.php" method="post" name="myForm" onsubmit="return validateForm()">
     Select post(s) to delete:
     <br>
     <table>
       <tr>
       <th>Delete?</th>
+      <th>Post ID</th>
       <th>User</th>
       <th>Post Content</th>
       </tr>
@@ -22,14 +23,16 @@
           exit();
       }
 
-      $query = "SELECT author_id, content FROM Posts;";
+      $query = "SELECT author_id, post_id, content FROM Posts;";
       $result = $mysqli->query($query);
 
         while($row = $result->fetch_assoc()) {
           $user = $row["author_id"];
+          $p_id = $row["post_id"];
           $content = $row["content"];
           echo "<tr>";
-          echo "<td> <input type='checkbox'></td>";
+          echo "<td> <input type=\"checkbox\" name=\"checkbox[]\" value=\"".$row["post_id"]."\"></td>";
+          echo "<td>" . $p_id . "</td>";
           echo "<td>" .$user. "</td>";
           echo "<td>" . $content . "</td>";
           echo "</tr>";
